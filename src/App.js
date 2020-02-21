@@ -12,6 +12,7 @@ class App extends Component {
   }
 
   handleOnClickUsers() {
+    console.log(this.props.store)
     this.props.store.dispatch({
       type: 'GET_COUNT_OF_USERS',
     });
@@ -19,6 +20,8 @@ class App extends Component {
 
   render() {
     // debugger;
+    console.log(this.props)
+
     return (
       <div className="App">
           <button onClick={() => this.handleOnClickItems()}>
@@ -27,15 +30,17 @@ class App extends Component {
           <button onClick={() => this.handleOnClickUsers()}>
             Click to change user count
           </button>
-          <p>{this.props.items.length}</p>
+          <p>Items: {this.props.orange.length}</p>
+          <p>Users: {this.props.users.length}</p>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  debugger;
-  return { items: state.items }
+const vanilla = (milkshake) => {
+  // debugger;
+  return { orange: milkshake.items, users: milkshake.users}
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(vanilla )(App);
+// export default connect( state =>  ({ items: state.items }) )(App);
